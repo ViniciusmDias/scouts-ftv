@@ -1,6 +1,7 @@
 export const newPlayer1: Player = {
   name: "Dudu",
   attacks: {
+    sharkAttack: 0,
     parallel: 0,
     halfBottom: 0,
     longDiagonal: 0,
@@ -22,6 +23,7 @@ export const newPlayer1: Player = {
 export const newPlayer2: Player = {
   name: "Arthur",
   attacks: {
+    sharkAttack: 0,
     parallel: 0,
     halfBottom: 0,
     longDiagonal: 0,
@@ -43,6 +45,7 @@ export const newPlayer2: Player = {
 export const newPlayer3: Player = {
   name: "Gui",
   attacks: {
+    sharkAttack: 0,
     parallel: 0,
     halfBottom: 0,
     longDiagonal: 0,
@@ -64,6 +67,7 @@ export const newPlayer3: Player = {
 export const newPlayer4: Player = {
   name: "Tavinho",
   attacks: {
+    sharkAttack: 0,
     parallel: 0,
     halfBottom: 0,
     longDiagonal: 0,

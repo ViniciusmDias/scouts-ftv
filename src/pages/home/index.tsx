@@ -125,6 +125,24 @@ export default function Home() {
         {option === "attack" ? (
           <S.AttacksContainer>
             <S.Attribute>
+              <Text size="sm">
+                Shark ataque: {selectedPlayer.attacks.sharkAttack}
+              </Text>
+
+              <Button
+                size="small"
+                onClick={() => adjustAttack("sharkAttack", 1)}
+              >
+                +
+              </Button>
+              <Button
+                size="small"
+                onClick={() => adjustAttack("sharkAttack", -1)}
+              >
+                -
+              </Button>
+            </S.Attribute>
+            <S.Attribute>
               <Text size="sm">Paralela: {selectedPlayer.attacks.parallel}</Text>
 
               <Button size="small" onClick={() => adjustAttack("parallel", 1)}>

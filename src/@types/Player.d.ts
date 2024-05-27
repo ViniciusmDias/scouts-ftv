@@ -1,4 +1,5 @@
 interface Attacks {
+  sharkAttack: number;
   parallel: number;
   halfBottom: number;
   longDiagonal: number;
