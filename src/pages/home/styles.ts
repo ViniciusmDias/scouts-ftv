@@ -1,9 +1,26 @@
-import { Box, Button, Heading, Text, styled } from "@pegasus-ui/react";
+import {
+  Box,
+  Button,
+  Heading,
+  Text,
+  TextInput,
+  styled,
+} from "@pegasus-ui/react";
 
 export const Container = styled("main", {
   maxWidth: "650px",
-  margin: "$10 auto $4",
+  margin: "$4 auto $4",
   padding: "0 $4",
+});
+
+export const ButtonZero = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+
+  [`${Button}`]: {
+    marginTop: "$6",
+  },
 });
 
 export const Header = styled("div", {
@@ -47,6 +64,23 @@ export const Players = styled("div", {
     minWidth: "auto",
     width: "$20",
   },
+
+  input: {
+    margin: "$2",
+    border: "2px solid $galactic500",
+    borderRadius: "10%",
+    backgroundColor: "transparent",
+    color: "$galactic500",
+    padding: "$2",
+    width: "$16",
+    height: "$8",
+    cursor: "pointer",
+
+    "&:focus": {
+      backgroundColor: "$galactic500",
+      color: "white",
+    },
+  },
 });
 
 export const ButtonType = styled("div", {
@@ -57,6 +91,7 @@ export const ButtonType = styled("div", {
     margin: "$2",
     minWidth: "auto",
     width: "$20",
+    height: "$8",
   },
 });
 

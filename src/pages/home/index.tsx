@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { NextSeo } from "next-seo";
 import { Dispatch, SetStateAction, useState } from "react";
 import { newPlayer1, newPlayer2, newPlayer3, newPlayer4 } from "./players";
+import { Input } from "../search/styles";
 
 const registerFormSchema = z.object({
   name: z
@@ -22,6 +23,35 @@ const registerFormSchema = z.object({
 });
 
 type RegisterFormData = z.infer<typeof registerFormSchema>;
+const resetPlayerAttributesToZero = (player: Player): Player => {
+  const resetAttacks = Object.keys(player.attacks).reduce((acc, key) => {
+    acc[key as keyof Attacks] = 0;
+    return acc;
+  }, {} as Attacks);
+
+  const resetErrors = Object.keys(player.errors).reduce((acc, key) => {
+    acc[key as keyof Errors] = 0;
+    return acc;
+  }, {} as Errors);
+
+  return {
+    ...player,
+    attacks: resetAttacks,
+    errors: resetErrors,
+  };
+};
+
+const resetAllPlayers = (
+  setPlayer1: React.Dispatch<React.SetStateAction<Player>>,
+  setPlayer2: React.Dispatch<React.SetStateAction<Player>>,
+  setPlayer3: React.Dispatch<React.SetStateAction<Player>>,
+  setPlayer4: React.Dispatch<React.SetStateAction<Player>>
+) => {
+  setPlayer1((prev) => resetPlayerAttributesToZero(prev));
+  setPlayer2((prev) => resetPlayerAttributesToZero(prev));
+  setPlayer3((prev) => resetPlayerAttributesToZero(prev));
+  setPlayer4((prev) => resetPlayerAttributesToZero(prev));
+};
 
 export default function Home() {
   const [player1, setPlayer1] = useState(newPlayer1);
@@ -58,24 +88,38 @@ export default function Home() {
     resolver: zodResolver(registerFormSchema),
   });
 
+  const handleResetAllPlayers = () => {
+    resetAllPlayers(setPlayer1, setPlayer2, setPlayer3, setPlayer4);
+  };
+
   const adjustAttack = (attribute: keyof Attacks, amount: number) => {
-    setSelectedPlayer((prevPlayer: Player) => ({
-      ...prevPlayer,
-      attacks: {
-        ...prevPlayer.attacks,
-        [attribute]: prevPlayer.attacks[attribute] + amount,
-      },
-    }));
+    setSelectedPlayer((prevPlayer: Player) => {
+      const currentAmount = prevPlayer.attacks[attribute];
+      const newAmount = currentAmount + amount;
+
+      return {
+        ...prevPlayer,
+        attacks: {
+          ...prevPlayer.attacks,
+          [attribute]: newAmount < 0 ? 0 : newAmount,
+        },
+      };
+    });
   };
 
   const adjustErrors = (attribute: keyof Errors, amount: number) => {
-    setSelectedPlayer((prevPlayer: Player) => ({
-      ...prevPlayer,
-      errors: {
-        ...prevPlayer.errors,
-        [attribute]: prevPlayer.errors[attribute] + amount,
-      },
-    }));
+    setSelectedPlayer((prevPlayer: Player) => {
+      const currentAmount = prevPlayer.errors[attribute];
+      const newAmount = currentAmount + amount;
+
+      return {
+        ...prevPlayer,
+        errors: {
+          ...prevPlayer.errors,
+          [attribute]: newAmount < 0 ? 0 : newAmount,
+        },
+      };
+    });
   };
 
   return (
@@ -132,11 +176,21 @@ export default function Home() {
                 {selectedPlayer.attacks.sharkAttackAttempts}
               </Text>
 
-              <Button onClick={() => adjustAttack("sharkAttack", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("sharkAttack", -1);
+                  adjustAttack("sharkAttackAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
 
-              <Button onClick={() => adjustAttack("sharkAttack", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("sharkAttack", 1);
+                  adjustAttack("sharkAttackAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("sharkAttackAttempts", 1)}>
@@ -149,11 +203,21 @@ export default function Home() {
                 {selectedPlayer.attacks.parallelAttempts}
               </Text>
 
-              <Button onClick={() => adjustAttack("parallel", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("parallel", -1);
+                  adjustAttack("parallelAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
 
-              <Button onClick={() => adjustAttack("parallel", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("parallel", 1);
+                  adjustAttack("parallelAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("parallelAttempts", 1)}>
@@ -165,10 +229,20 @@ export default function Home() {
                 Meio fundo: {selectedPlayer.attacks.halfBottom}/
                 {selectedPlayer.attacks.halfBottomAttempts}
               </Text>
-              <Button onClick={() => adjustAttack("halfBottom", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("halfBottom", -1);
+                  adjustAttack("halfBottomAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
-              <Button onClick={() => adjustAttack("halfBottom", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("halfBottom", 1);
+                  adjustAttack("halfBottomAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("halfBottomAttempts", 1)}>
@@ -181,10 +255,20 @@ export default function Home() {
                 {selectedPlayer.attacks.longDiagonalAttempts}
               </Text>
 
-              <Button onClick={() => adjustAttack("longDiagonal", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("longDiagonal", -1);
+                  adjustAttack("longDiagonalAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
-              <Button onClick={() => adjustAttack("longDiagonal", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("longDiagonal", 1);
+                  adjustAttack("longDiagonalAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("longDiagonalAttempts", 1)}>
@@ -197,10 +281,20 @@ export default function Home() {
                 {selectedPlayer.attacks.shortDiagonalAttempts}
               </Text>
 
-              <Button onClick={() => adjustAttack("shortDiagonal", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("shortDiagonal", -1);
+                  adjustAttack("shortDiagonalAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
-              <Button onClick={() => adjustAttack("shortDiagonal", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("shortDiagonal", 1);
+                  adjustAttack("shortDiagonalAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("shortDiagonalAttempts", 1)}>
@@ -212,10 +306,20 @@ export default function Home() {
                 Pingo de meio: {selectedPlayer.attacks.halfDrop}/
                 {selectedPlayer.attacks.halfDropAttempts}
               </Text>
-              <Button onClick={() => adjustAttack("halfDrop", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("halfDrop", -1);
+                  adjustAttack("halfDropAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
-              <Button onClick={() => adjustAttack("halfDrop", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("halfDrop", 1);
+                  adjustAttack("halfDropAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button
@@ -231,10 +335,20 @@ export default function Home() {
                 {selectedPlayer.attacks.dropBackAttempts}
               </Text>
 
-              <Button onClick={() => adjustAttack("dropBack", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("dropBack", -1);
+                  adjustAttack("dropBackAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
-              <Button onClick={() => adjustAttack("dropBack", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("dropBack", 1);
+                  adjustAttack("dropBackAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("dropBackAttempts", 1)}>
@@ -247,10 +361,20 @@ export default function Home() {
                 {selectedPlayer.attacks.blockAttempts}
               </Text>
 
-              <Button onClick={() => adjustAttack("block", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("block", -1);
+                  adjustAttack("blockAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
-              <Button onClick={() => adjustAttack("block", 1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("block", 1);
+                  adjustAttack("blockAttempts", 1);
+                }}
+              >
                 <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("blockAttempts", 1)}>
@@ -263,15 +387,25 @@ export default function Home() {
                 De graça: {selectedPlayer.attacks.forFree}/
                 {selectedPlayer.attacks.forFreeAttempts}
               </Text>
-              <Button onClick={() => adjustAttack("forFree", -1)}>
+              <Button
+                onClick={() => {
+                  adjustAttack("forFree", -1);
+                  adjustAttack("forFreeAttempts", -1);
+                }}
+              >
                 <MinusCircle />
               </Button>
 
-              <Button onClick={() => adjustAttack("forFree", 1)}>
-                <PlusCircle />
+              <Button
+                onClick={() => {
+                  adjustAttack("forFree", 1);
+                  adjustAttack("forFreeAttempts", 1);
+                }}
+              >
+                <CheckCircle />
               </Button>
               <Button onClick={() => adjustAttack("forFreeAttempts", 1)}>
-                <CheckCircle />
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
@@ -361,6 +495,11 @@ export default function Home() {
             </S.Attribute>
           </S.ErrorsContainer>
         )}
+        <S.ButtonZero>
+          <Button variant="primary" onClick={handleResetAllPlayers}>
+            Zerar os scouts
+          </Button>
+        </S.ButtonZero>
       </S.Container>
     </>
   );
