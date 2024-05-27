@@ -83,9 +83,31 @@ export const Attribute = styled("div", {
 
   [`${Button}`]: {
     marginLeft: "$2",
-
+    backgroundColor: "#c60f13",
     minWidth: "auto",
     width: "$20",
     height: "$8",
+    opacity: 0.8,
+
+    "&:hover": {
+      opacity: 1,
+      backgroundColor: "#c60f13 !important",
+    },
+  },
+
+  [`${Button} + ${Button}`]: {
+    backgroundColor: "$galactic500",
+    "&:hover": {
+      backgroundColor: "$galactic500 !important",
+    },
+
+    [`${Button}:hover`]: {},
+  },
+  [`${Button} + ${Button} + ${Button}`]: {
+    backgroundColor: "$gray200",
+
+    "&:hover": {
+      backgroundColor: "$gray200 !important",
+    },
   },
 });

@@ -1,14 +1,23 @@
 interface Attacks {
   sharkAttack: number;
+  sharkAttackAttempts: number;
   parallel: number;
+  parallelAttempts: number;
   halfBottom: number;
+  halfBottomAttempts: number;
   longDiagonal: number;
+  longDiagonalAttempts: number;
   shortDiagonal: number;
+  shortDiagonalAttempts: number;
   halfDrop: number;
+  halfDropAttempts: number;
   dropBack: number;
+  dropBackAttempts: number;
   block: number;
-  ace: number;
+  blockAttempts: number;
   forFree: number;
+  forFreeAttempts: number;
+  ace: number;
 }
 
 interface Errors {
@@ -17,6 +26,7 @@ interface Errors {
   set: number;
   serve: number;
   netTouch: number;
+  receive: number;
 }
 
 interface Player {

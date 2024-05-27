@@ -1,6 +1,8 @@
 import { Button, Heading, Text, TextInput } from "@pegasus-ui/react";
 import * as S from "./styles";
-import { ArrowRight } from "phosphor-react";
+import {} from "phosphor-react";
+import { PlusCircle, MinusCircle, CheckCircle } from "phosphor-react";
+
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -126,139 +128,160 @@ export default function Home() {
           <S.AttacksContainer>
             <S.Attribute>
               <Text size="sm">
-                Shark ataque: {selectedPlayer.attacks.sharkAttack}
+                Shark ataque: {selectedPlayer.attacks.sharkAttack}/
+                {selectedPlayer.attacks.sharkAttackAttempts}
               </Text>
 
-              <Button
-                size="small"
-                onClick={() => adjustAttack("sharkAttack", 1)}
-              >
-                +
+              <Button onClick={() => adjustAttack("sharkAttack", -1)}>
+                <MinusCircle />
               </Button>
-              <Button
-                size="small"
-                onClick={() => adjustAttack("sharkAttack", -1)}
-              >
-                -
-              </Button>
-            </S.Attribute>
-            <S.Attribute>
-              <Text size="sm">Paralela: {selectedPlayer.attacks.parallel}</Text>
 
-              <Button size="small" onClick={() => adjustAttack("parallel", 1)}>
-                +
+              <Button onClick={() => adjustAttack("sharkAttack", 1)}>
+                <CheckCircle />
               </Button>
-              <Button size="small" onClick={() => adjustAttack("parallel", -1)}>
-                -
+              <Button onClick={() => adjustAttack("sharkAttackAttempts", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
               <Text size="sm">
-                Meio fundo: {selectedPlayer.attacks.halfBottom}
+                Paralela: {selectedPlayer.attacks.parallel}/
+                {selectedPlayer.attacks.parallelAttempts}
               </Text>
 
-              <Button
-                size="small"
-                onClick={() => adjustAttack("halfBottom", 1)}
-              >
-                +
+              <Button onClick={() => adjustAttack("parallel", -1)}>
+                <MinusCircle />
               </Button>
-              <Button
-                size="small"
-                onClick={() => adjustAttack("halfBottom", -1)}
-              >
-                -
+
+              <Button onClick={() => adjustAttack("parallel", 1)}>
+                <CheckCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("parallelAttempts", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
               <Text size="sm">
-                Diagonal longa: {selectedPlayer.attacks.longDiagonal}
+                Meio fundo: {selectedPlayer.attacks.halfBottom}/
+                {selectedPlayer.attacks.halfBottomAttempts}
               </Text>
-
-              <Button
-                size="small"
-                onClick={() => adjustAttack("longDiagonal", 1)}
-              >
-                +
+              <Button onClick={() => adjustAttack("halfBottom", -1)}>
+                <MinusCircle />
               </Button>
-              <Button
-                size="small"
-                onClick={() => adjustAttack("longDiagonal", -1)}
-              >
-                -
+              <Button onClick={() => adjustAttack("halfBottom", 1)}>
+                <CheckCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("halfBottomAttempts", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
               <Text size="sm">
-                Diagonal curta: {selectedPlayer.attacks.shortDiagonal}
+                Diagonal longa: {selectedPlayer.attacks.longDiagonal}/
+                {selectedPlayer.attacks.longDiagonalAttempts}
               </Text>
 
-              <Button
-                size="small"
-                onClick={() => adjustAttack("shortDiagonal", 1)}
-              >
-                +
+              <Button onClick={() => adjustAttack("longDiagonal", -1)}>
+                <MinusCircle />
               </Button>
-              <Button
-                size="small"
-                onClick={() => adjustAttack("shortDiagonal", -1)}
-              >
-                -
+              <Button onClick={() => adjustAttack("longDiagonal", 1)}>
+                <CheckCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("longDiagonalAttempts", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
               <Text size="sm">
-                Pingo de meio: {selectedPlayer.attacks.halfDrop}
+                Diagonal curta: {selectedPlayer.attacks.shortDiagonal}/
+                {selectedPlayer.attacks.shortDiagonalAttempts}
               </Text>
 
-              <Button size="small" onClick={() => adjustAttack("halfDrop", 1)}>
-                +
+              <Button onClick={() => adjustAttack("shortDiagonal", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustAttack("halfDrop", -1)}>
-                -
+              <Button onClick={() => adjustAttack("shortDiagonal", 1)}>
+                <CheckCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("shortDiagonalAttempts", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
               <Text size="sm">
-                Pingo pra trás: {selectedPlayer.attacks.dropBack}
+                Pingo de meio: {selectedPlayer.attacks.halfDrop}/
+                {selectedPlayer.attacks.halfDropAttempts}
               </Text>
-
-              <Button size="small" onClick={() => adjustAttack("dropBack", 1)}>
-                +
+              <Button onClick={() => adjustAttack("halfDrop", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustAttack("dropBack", 1)}>
-                -
+              <Button onClick={() => adjustAttack("halfDrop", 1)}>
+                <CheckCircle />
+              </Button>
+              <Button
+                size="small"
+                onClick={() => adjustAttack("halfDropAttempts", 1)}
+              >
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
-              <Text size="sm">Bloqueio: {selectedPlayer.attacks.block}</Text>
+              <Text size="sm">
+                Pingo pra trás: {selectedPlayer.attacks.dropBack}/
+                {selectedPlayer.attacks.dropBackAttempts}
+              </Text>
 
-              <Button size="small" onClick={() => adjustAttack("block", 1)}>
-                +
+              <Button onClick={() => adjustAttack("dropBack", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustAttack("block", -1)}>
-                -
+              <Button onClick={() => adjustAttack("dropBack", 1)}>
+                <CheckCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("dropBackAttempts", 1)}>
+                <PlusCircle />
+              </Button>
+            </S.Attribute>
+            <S.Attribute>
+              <Text size="sm">
+                Bloqueio: {selectedPlayer.attacks.block}/
+                {selectedPlayer.attacks.blockAttempts}
+              </Text>
+
+              <Button onClick={() => adjustAttack("block", -1)}>
+                <MinusCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("block", 1)}>
+                <CheckCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("blockAttempts", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
 
+            <S.Attribute>
+              <Text size="sm">
+                De graça: {selectedPlayer.attacks.forFree}/
+                {selectedPlayer.attacks.forFreeAttempts}
+              </Text>
+              <Button onClick={() => adjustAttack("forFree", -1)}>
+                <MinusCircle />
+              </Button>
+
+              <Button onClick={() => adjustAttack("forFree", 1)}>
+                <PlusCircle />
+              </Button>
+              <Button onClick={() => adjustAttack("forFreeAttempts", 1)}>
+                <CheckCircle />
+              </Button>
+            </S.Attribute>
             <S.Attribute>
               <Text size="sm">Ace: {selectedPlayer.attacks.ace}</Text>
 
-              <Button size="small" onClick={() => adjustAttack("ace", 1)}>
-                +
+              <Button onClick={() => adjustAttack("ace", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustAttack("ace", -1)}>
-                -
-              </Button>
-            </S.Attribute>
-            <S.Attribute>
-              <Text size="sm">De graça: {selectedPlayer.attacks.forFree}</Text>
-
-              <Button size="small" onClick={() => adjustAttack("forFree", 1)}>
-                +
-              </Button>
-              <Button size="small" onClick={() => adjustAttack("forFree", -1)}>
-                -
+              <Button onClick={() => adjustAttack("ace", 1)}>
+                <CheckCircle />
               </Button>
             </S.Attribute>
           </S.AttacksContainer>
@@ -269,11 +292,11 @@ export default function Home() {
                 Erro de ataque: {selectedPlayer.errors.attack}
               </Text>
 
-              <Button size="small" onClick={() => adjustErrors("attack", 1)}>
-                +
+              <Button onClick={() => adjustErrors("attack", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustErrors("attack", -1)}>
-                -
+              <Button onClick={() => adjustErrors("attack", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
@@ -281,11 +304,11 @@ export default function Home() {
                 Erro de defesa: {selectedPlayer.errors.defense}
               </Text>
 
-              <Button size="small" onClick={() => adjustErrors("defense", 1)}>
-                +
+              <Button onClick={() => adjustErrors("defense", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustErrors("defense", -1)}>
-                -
+              <Button onClick={() => adjustErrors("defense", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
@@ -293,11 +316,11 @@ export default function Home() {
                 Encostou na rede: {selectedPlayer.errors.netTouch}
               </Text>
 
-              <Button size="small" onClick={() => adjustErrors("netTouch", 1)}>
-                +
+              <Button onClick={() => adjustErrors("netTouch", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustErrors("netTouch", -1)}>
-                -
+              <Button onClick={() => adjustErrors("netTouch", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
@@ -305,11 +328,11 @@ export default function Home() {
                 Erro de saque: {selectedPlayer.errors.serve}
               </Text>
 
-              <Button size="small" onClick={() => adjustErrors("serve", 1)}>
-                +
+              <Button onClick={() => adjustErrors("serve", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustErrors("serve", -1)}>
-                -
+              <Button onClick={() => adjustErrors("serve", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
             <S.Attribute>
@@ -317,11 +340,23 @@ export default function Home() {
                 Erro de levantada: {selectedPlayer.errors.set}
               </Text>
 
-              <Button size="small" onClick={() => adjustErrors("set", 1)}>
-                +
+              <Button onClick={() => adjustErrors("set", -1)}>
+                <MinusCircle />
               </Button>
-              <Button size="small" onClick={() => adjustErrors("set", -1)}>
-                -
+              <Button onClick={() => adjustErrors("set", 1)}>
+                <PlusCircle />
+              </Button>
+            </S.Attribute>
+            <S.Attribute>
+              <Text size="sm">
+                Erro de recepção: {selectedPlayer.errors.receive}
+              </Text>
+
+              <Button onClick={() => adjustErrors("receive", -1)}>
+                <MinusCircle />
+              </Button>
+              <Button onClick={() => adjustErrors("receive", 1)}>
+                <PlusCircle />
               </Button>
             </S.Attribute>
           </S.ErrorsContainer>
