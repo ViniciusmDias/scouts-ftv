@@ -40,9 +40,12 @@ export const Players = styled("div", {
   display: "flex",
   width: "100%",
   justifyContent: "center",
+  overflow: "auto",
 
   [`${Button}`]: {
     margin: "$2",
+    minWidth: "auto",
+    width: "$20",
   },
 });
 
@@ -52,6 +55,8 @@ export const ButtonType = styled("div", {
 
   [`${Button}`]: {
     margin: "$2",
+    minWidth: "auto",
+    width: "$20",
   },
 });
 
@@ -78,6 +83,9 @@ export const Attribute = styled("div", {
 
   [`${Button}`]: {
     marginLeft: "$2",
-    width: "$2",
+
+    minWidth: "auto",
+    width: "$20",
+    height: "$8",
   },
 });
