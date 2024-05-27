@@ -120,7 +120,7 @@ export const Attribute = styled("div", {
     marginLeft: "$2",
     backgroundColor: "#c60f13",
     minWidth: "auto",
-    width: "$20",
+    width: "$16",
     height: "$8",
     opacity: 0.8,
 
