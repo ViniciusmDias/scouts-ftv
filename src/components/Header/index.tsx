@@ -5,10 +5,10 @@ export function Header() {
   return (
     <HeaderContainer>
       <LinkTo href="/">
-        <Heading as="h3">Analisar partida</Heading>
+        <Heading as="h3">Fazer scouts de uma partida</Heading>
       </LinkTo>
       <LinkTo href="/search">
-        <Heading as="h3">Cadastrar partida</Heading>
+        <Heading as="h3">Análise da partida</Heading>
       </LinkTo>
     </HeaderContainer>
   );

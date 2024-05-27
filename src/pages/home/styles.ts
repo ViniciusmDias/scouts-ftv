@@ -1,4 +1,4 @@
-import { Box, Heading, Text, styled } from "@pegasus-ui/react";
+import { Box, Button, Heading, Text, styled } from "@pegasus-ui/react";
 
 export const Container = styled("main", {
   maxWidth: "650px",
@@ -34,4 +34,50 @@ export const Form = styled(Box, {
 
 export const FormError = styled(Text, {
   color: "#f75a68",
+});
+
+export const Players = styled("div", {
+  display: "flex",
+  width: "100%",
+  justifyContent: "center",
+
+  [`${Button}`]: {
+    margin: "$2",
+  },
+});
+
+export const ButtonType = styled("div", {
+  display: "flex",
+  justifyContent: "center",
+
+  [`${Button}`]: {
+    margin: "$2",
+  },
+});
+
+export const AttacksContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+export const ErrorsContainer = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+});
+
+export const Attribute = styled("div", {
+  display: "flex",
+  marginTop: "$2",
+  width: "100%",
+
+  justifyContent: "center",
+  alignItems: "center",
+
+  [`${Button}`]: {
+    marginLeft: "$2",
+    width: "$2",
+  },
 });

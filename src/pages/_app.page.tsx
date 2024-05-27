@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
           type: "website",
           locale: "pt_BR",
           url: "https://www.galactic.com.br",
-          siteName: "Scouts Futevolei",
+          siteName: "Scouts.ftv",
         }}
       />
       <Header />

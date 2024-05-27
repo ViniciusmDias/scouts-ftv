@@ -13,10 +13,10 @@ import { useState } from "react";
 import { Form } from "react-hook-form";
 
 export default function Search() {
-  const [lastPeople, setLastPeople] = useState<Person[]>([]);
-  const [people, setPeople] = useState<Person[]>();
+  const [lastPeople, setLastPeople] = useState<Player[]>([]);
+  const [people, setPeople] = useState<Player[]>();
 
-  // const { data: allPeople } = useQuery<Person[]>([], async () => {
+  // const { data: allPeople } = useQuery<Player[]>([], async () => {
   //   const response = await api.get(`/person/people`);
 
   //   setLastPeople(response.data);
@@ -31,7 +31,7 @@ export default function Search() {
       }
 
       const response = await api.get(`/person/${searchValue}`);
-      const foundPeople: Person[] = response.data;
+      const foundPeople: Player[] = response.data;
 
       setPeople(foundPeople);
     } catch (error) {
@@ -42,58 +42,19 @@ export default function Search() {
   return (
     <>
       <NextSeo
-        title="Encontre uma pessoa | Localiza.rs"
-        description="Uma corrente de solidariedade para localizar pessoas prejudicadas
-        pelas enchentes no Rio Grande do Sul."
+        title="Análise de uma partida | Scouts.ftv"
+        description="Uma variadades de scouts para você entender seu jogo e aprimorar sua
+        evolução!"
       />
 
       <ListContainer>
         <Heading as="h1" size="md">
-          Busque por um abrigado
+          Em desenvolvimento!!!
         </Heading>
         <Text size="sm">
-          Pesquisa de pessoas resgatadas nas enchentes do Rio Grande do Sul que
-          estão em abrigos.
+          Uma variadades de scouts para você entender seu jogo e aprimorar sua
+          evolução!
         </Text>
-        <InputContainer>
-          <label>
-            <Text size="sm">Digite o nome, CPF ou abrigo</Text>
-            <TextInput
-              placeholder="Busca por nome, cpf ou nome do abrigo"
-              onChange={(event: any) => findPerson(event.target.value)}
-            />
-          </label>
-
-          <List>
-            {people &&
-              people.map((person) => {
-                return (
-                  <Text key={person.cpf} size="xl">
-                    {person.name} - {person.temporary_house} -{" "}
-                    {person.observations}{" "}
-                  </Text>
-                );
-              })}
-          </List>
-        </InputContainer>
-
-        <LastPeopleContainer>
-          <Heading as="h2" size="md">
-            Últimos abrigados
-          </Heading>
-          <Text size="sm">Lista com os 10 últimos abrigados cadastrados.</Text>
-          <List>
-            {lastPeople &&
-              lastPeople.map((person) => {
-                return (
-                  <Text key={person.cpf} size="xl">
-                    {person.name} - {person.temporary_house} -{" "}
-                    {person.observations}
-                  </Text>
-                );
-              })}
-          </List>
-        </LastPeopleContainer>
       </ListContainer>
     </>
   );
