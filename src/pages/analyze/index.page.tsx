@@ -1,16 +1,11 @@
 import { Heading, Text, TextInput } from "@pegasus-ui/react";
 import { NextSeo } from "next-seo";
-import {
-  List,
-  ListContainer,
-  InputContainer,
-  Input,
-  LastPeopleContainer,
-} from "./styles";
+import * as S from "./styles";
 import { api } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { Form } from "react-hook-form";
+import { Bar } from "react-chartjs-2";
 
 export default function Search() {
   const [lastPeople, setLastPeople] = useState<Player[]>([]);
@@ -47,15 +42,45 @@ export default function Search() {
         evolução!"
       />
 
-      <ListContainer>
+      <S.ListContainer>
         <Heading as="h1" size="md">
-          Em desenvolvimento!!!
+          Estatisticas do jogo por equipe
         </Heading>
-        <Text size="sm">
-          Uma variadades de scouts para você entender seu jogo e aprimorar sua
-          evolução!
-        </Text>
-      </ListContainer>
+        <S.Content>
+          <S.Teams>
+            <Text>Dudu / Arthur</Text>
+            <Text>Estatística do Jogo</Text>
+            <Text>Gui / Tavinho</Text>
+          </S.Teams>
+          <S.Scouts>
+            <S.Row>
+              <S.Points>26</S.Points>
+              <Text>Ataque</Text>
+              <S.Points>21</S.Points>
+            </S.Row>
+            <S.Row>
+              <S.Points>2</S.Points>
+              <Text>Bloqueio</Text>
+              <S.Points>4</S.Points>
+            </S.Row>
+            <S.Row>
+              <S.Points>3</S.Points>
+              <Text>Saque</Text>
+              <S.Points>1</S.Points>
+            </S.Row>
+            <S.Row>
+              <S.Points>11</S.Points>
+              <Text>Erro do adversário</Text>
+              <S.Points>6</S.Points>
+            </S.Row>
+            <S.Row>
+              <S.Points>42</S.Points>
+              <Text>Total</Text>
+              <S.Points>32</S.Points>
+            </S.Row>
+          </S.Scouts>
+        </S.Content>
+      </S.ListContainer>
     </>
   );
 }

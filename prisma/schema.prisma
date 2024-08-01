@@ -11,15 +11,94 @@ datasource db {
   directUrl = env("DATABASE_DIRECT_URL")
 }
 
+model Player {
+  id         String   @id @default(uuid())
+  name       String
+  side       Side
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
 
-model Person {
-  id              String   @id @default(uuid())
-  name            String
-  cpf             String   @unique 
-  observations    String   @default("")
-  temporary_house String  
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt @default(now())
+  // Attacks and Attempts
+  sharkAttack           Int @default(0)
+  sharkAttackAttempts   Int @default(0)
+  parallel              Int @default(0)
+  parallelAttempts      Int @default(0)
+  longMiddle            Int @default(0)
+  longMiddleAttempts    Int @default(0)
+  longDiagonal          Int @default(0)
+  longDiagonalAttempts  Int @default(0)
+  shortDiagonal         Int @default(0)
+  shortDiagonalAttempts Int @default(0)
+  shortMiddle           Int @default(0)
+  shortMiddleAttempts   Int @default(0)
+  backDrop              Int @default(0)
+  backDropAttempts      Int @default(0)
+  block                 Int @default(0)
+  blockAttempts         Int @default(0)
+  free                  Int @default(0)
+  freeAttempts          Int @default(0)
+  ace                   Int @default(0)
+  aceAttempts           Int @default(0)
 
-  @@map("person")
+  // Errors
+  attackError    Int    @default(0)
+  defenseError   Int    @default(0)
+  netTouchError  Int    @default(0)
+  serveError     Int    @default(0)
+  setError       Int    @default(0)
+  receptionError Int    @default(0)
+  Team           Team[] @relation("TeamPlayers")
+
+  @@map("player")
+}
+
+model Game {
+  id    String @id @default(uuid())
+  teams Team[] @relation("TeamGames")
+
+  // Statistics for Team 1
+  team1AttackPoints Int @default(0)
+  team1BlockPoints  Int @default(0)
+  team1ServePoints  Int @default(0)
+  team1Errors       Int @default(0)
+  team1TotalPoints  Int @default(0)
+
+  // Statistics for Team 2
+  team2AttackPoints Int @default(0)
+  team2BlockPoints  Int @default(0)
+  team2ServePoints  Int @default(0)
+  team2Errors       Int @default(0)
+  team2TotalPoints  Int @default(0)
+
+  // Winner and Loser
+  winner   Team?  @relation("GameWinner", fields: [winnerId], references: [id])
+  loser    Team?  @relation("GameLoser", fields: [loserId], references: [id])
+  winnerId String?
+  loserId  String?
+
+  matchNumber Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now()) @updatedAt
+
+  @@map("game")
+}
+
+model Team {
+  id            String   @id @default(uuid())
+  name          String   @unique 
+  games         Game[]   @relation("TeamGames")
+  win           Int      @default(0)
+  loss          Int      @default(0)
+  gamesAsWinner Game[]   @relation("GameWinner")
+  gamesAsLoser  Game[]   @relation("GameLoser")
+  created_at    DateTime @default(now())
+  updated_at    DateTime @default(now()) @updatedAt
+
+  @@map("team")
+  Player Player[] @relation("TeamPlayers")
+}
+
+enum Side {
+  LEFT
+  RIGHT
 }
