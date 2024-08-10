@@ -1,14 +1,14 @@
-import { Button, Heading, Text, TextInput } from "@pegasus-ui/react";
-import * as S from "./styles";
-import { ArrowRight } from "phosphor-react";
-import { NextSeo } from "next-seo";
-import { z } from "zod";
 import { api } from "@/lib/axios";
-import { useRouter } from "next/router";
-import { AxiosError } from "axios";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Text, TextInput } from "@pegasus-ui/react";
+import { AxiosError } from "axios";
+import { NextSeo } from "next-seo";
+import { useRouter } from "next/router";
+import { ArrowRight } from "phosphor-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import * as S from "./styles";
 
 const registerFormSchema = z.object({
   name: z
@@ -59,7 +59,7 @@ export default function Home() {
 
   async function handleRegister(data: RegisterFormData) {
     try {
-      await api.post("/player", {
+      await api.post("/player/create", {
         name: data.name,
         side: data.side,
         teamName: data.teamName,
@@ -82,7 +82,7 @@ export default function Home() {
 
   async function handleRegisterGame(data: RegisterGameFormData) {
     try {
-      await api.post("/game", {
+      await api.post("/game/create", {
         teamName1: data.teamName1,
         teamName2: data.teamName2,
         matchNumber: data.matchNumber,

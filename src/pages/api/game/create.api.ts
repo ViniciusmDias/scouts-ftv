@@ -1,11 +1,11 @@
-import { prisma } from "../../../lib/prisma";
-import type { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../../../lib/prisma';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method !== "POST") {
+  if (req.method !== 'POST') {
     return res.status(405).end();
   }
 
@@ -14,7 +14,7 @@ export default async function handler(
   if (!teamName1 || !teamName2 || !matchNumber) {
     return res
       .status(400)
-      .json({ error: "Both team names and matchNumber are required" });
+      .json({ error: 'Both team names and matchNumber are required' });
   }
 
   const convertNumber = Number(matchNumber);
@@ -32,7 +32,7 @@ export default async function handler(
 
     // Check if both teams are found
     if (!team1 || !team2) {
-      return res.status(404).json({ error: "One or both teams not found" });
+      return res.status(404).json({ error: 'One or both teams not found' });
     }
 
     // Create the match
@@ -47,7 +47,7 @@ export default async function handler(
 
     return res.status(201).json(match);
   } catch (error) {
-    console.error("Error creating match:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    console.error('Error creating match:', error);
+    return res.status(500).json({ error: 'Internal server error' });
   }
 }

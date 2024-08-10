@@ -1,11 +1,8 @@
-import { Heading, Text, TextInput } from "@pegasus-ui/react";
-import { NextSeo } from "next-seo";
-import * as S from "./styles";
-import { api } from "@/lib/axios";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
-import { Form } from "react-hook-form";
-import { Bar } from "react-chartjs-2";
+import { api } from '@/lib/axios';
+import { Heading, Text } from '@pegasus-ui/react';
+import { NextSeo } from 'next-seo';
+import { useState } from 'react';
+import * as S from './styles';
 
 export default function Search() {
   const [lastPeople, setLastPeople] = useState<Player[]>([]);
@@ -20,7 +17,7 @@ export default function Search() {
 
   async function findPerson(searchValue: string) {
     try {
-      if (searchValue === "") {
+      if (searchValue === '') {
         setPeople([]);
         return;
       }
@@ -54,29 +51,29 @@ export default function Search() {
           </S.Teams>
           <S.Scouts>
             <S.Row>
-              <S.Points>26</S.Points>
+              <S.Points>16</S.Points>
               <Text>Ataque</Text>
-              <S.Points>21</S.Points>
+              <S.Points>12</S.Points>
+            </S.Row>
+            <S.Row>
+              <S.Points>0</S.Points>
+              <Text>Bloqueio</Text>
+              <S.Points>2</S.Points>
+            </S.Row>
+            <S.Row>
+              <S.Points>0</S.Points>
+              <Text>Saque</Text>
+              <S.Points>0</S.Points>
             </S.Row>
             <S.Row>
               <S.Points>2</S.Points>
-              <Text>Bloqueio</Text>
-              <S.Points>4</S.Points>
-            </S.Row>
-            <S.Row>
-              <S.Points>3</S.Points>
-              <Text>Saque</Text>
-              <S.Points>1</S.Points>
-            </S.Row>
-            <S.Row>
-              <S.Points>11</S.Points>
               <Text>Erro do adversário</Text>
               <S.Points>6</S.Points>
             </S.Row>
             <S.Row>
-              <S.Points>42</S.Points>
+              <S.Points>18</S.Points>
               <Text>Total</Text>
-              <S.Points>32</S.Points>
+              <S.Points>20</S.Points>
             </S.Row>
           </S.Scouts>
         </S.Content>
