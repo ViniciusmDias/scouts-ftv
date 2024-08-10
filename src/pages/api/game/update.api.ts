@@ -10,9 +10,6 @@ export default async function handler(
   if (req.method === "PUT") {
     const { players, updatedGame: game, updatedTeams: teams } = req.body;
 
-    console.log(players, "players");
-    console.log(game, "game");
-
     // Check if game has an id
     if (!game || !game.id) {
       return res.status(400).json({ error: "Game or game ID is missing" });

@@ -7,8 +7,6 @@ export function updateGamePoints(
   const team1Players = players.slice(0, 2); // Jogadores 1 e 2
   const team2Players = players.slice(2, 4); // Jogadores 3 e 4
 
-  console.log(team1Players, "Jorge e Vini");
-
   // Função auxiliar para somar os pontos de ataque de um time
   const calculateAttackPoints = (teamPlayers: Player[]): number => {
     return teamPlayers.reduce((total, player) => {

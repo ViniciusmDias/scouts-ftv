@@ -48,22 +48,12 @@ export default function Scouts() {
   const setSelectedPlayer = setPlayersMap[playerSelected];
 
   async function handleSubmit() {
-    console.log(player1, "player1");
-    console.log(player2, "player2");
-    console.log(player3, "player3");
-    console.log(player4, "player4");
-
-    console.log(game, "game");
-
     const players = [player1, player2, player3, player4];
     const teams = [team1, team2];
 
     const updatedGame = updateGamePoints(game, players, teams);
 
     const updatedTeams = updateTeamPoints(game, teams);
-    console.log(updatedTeams, "updatedTeams");
-    console.log(teams, "teams");
-
     try {
       const response = await fetch("/api/game/update", {
         method: "PUT",
@@ -154,7 +144,7 @@ export default function Scouts() {
 
   const gameId = "998c424a-37ad-430a-8ee2-61d4b91621cf";
 
-  const getPlayersInfo = useCallback(async () => {
+  const getGameInfo = useCallback(async () => {
     try {
       const response = await api.get(`/game/${gameId}`);
 
@@ -172,8 +162,6 @@ export default function Scouts() {
       const player3 = team2.Player[0];
       const player4 = team2.Player[1];
 
-      console.log(player1, "player1");
-
       setPlayer1(player1);
       setPlayer2(player2);
       setPlayer3(player3);
@@ -185,13 +173,13 @@ export default function Scouts() {
 
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, []);
 
   useEffect(() => {
-    getPlayersInfo();
-  }, [getPlayersInfo]);
+    getGameInfo();
+  }, [getGameInfo]);
 
   return (
     <>
