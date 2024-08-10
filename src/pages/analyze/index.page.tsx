@@ -6,13 +6,6 @@ import * as S from "./styles";
 
 export default function Analyze() {
   const [loading, setLoading] = useState(true);
-  const [player1, setPlayer1] = useState({} as Player);
-  const [player2, setPlayer2] = useState({} as Player);
-  const [player3, setPlayer3] = useState({} as Player);
-  const [player4, setPlayer4] = useState({} as Player);
-  const [playerSelected, setPlayerSelected] = useState<
-    "player1" | "player2" | "player3" | "player4"
-  >("player1");
 
   const [game, setGame] = useState({} as Game);
   const [team1, setTeam1] = useState({} as Team);
@@ -33,18 +26,8 @@ export default function Analyze() {
       const team1 = sortedTeams[0];
       const team2 = sortedTeams[1];
 
-      const player1 = team1.Player[0];
-      const player2 = team1.Player[1];
-      const player3 = team2.Player[0];
-      const player4 = team2.Player[1];
-
-      setPlayer1(player1);
-      setPlayer2(player2);
-      setPlayer3(player3);
-      setPlayer4(player4);
       setTeam1(team1);
       setTeam2(team2);
-      setPlayerSelected("player1");
       setGame(game);
 
       setLoading(false);
