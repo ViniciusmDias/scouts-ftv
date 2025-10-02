@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Scouts FTV
 
-## Getting Started
+Aplicação Next.js com Prisma para monitoramento estatístico. Abaixo estão as instruções básicas para configurar o ambiente de desenvolvimento com o banco Postgres local via Docker Compose.
 
-First, run the development server:
+## Pré-requisitos
+
+- Node.js 18+
+- Docker 24+ e Docker Compose Plugin
+
+## Banco de dados local
+
+1. Ajuste (se necessário) as variáveis para usuário, senha e base desejados. O arquivo `docker-compose.yml` já fornece valores padrão (`scouts/scouts`).
+2. Suba o container PostgreSQL:
+
+   ```bash
+   docker compose up -d db
+   ```
+
+3. Crie um arquivo `.env.local` (ou atualize o `.env`) apontando para o banco local. Exemplo:
+
+   ```env
+   DATABASE_URL="postgresql://scouts:scouts@localhost:5432/scouts"
+   DATABASE_DIRECT_URL="postgresql://scouts:scouts@localhost:5432/scouts"
+   ```
+
+4. Aplique as migrações ou gere o schema conforme necessário:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+O volume nomeado `postgres-data` garante a persistência dos dados entre reinicializações.
+
+## Executando o projeto
+
+Instale as dependências e execute o servidor de desenvolvimento:
 
 ```bash
+npm install
 npm run dev
-# or
+# ou
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Para executar o lint:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+yarn lint
+```
 
-## Learn More
+## Scripts úteis
 
-To learn more about Next.js, take a look at the following resources:
+- `docker compose up -d db`: sobe apenas o banco.
+- `docker compose down`: derruba o banco e remove os containers (mantendo o volume).
+- `docker compose down -v`: derruba e remove também os dados persistidos.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Observações
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- O projeto utiliza Prisma; qualquer alteração no schema exige `npx prisma generate` ou `npx prisma migrate` conforme o caso.
+- Verifique se o banco remoto definido no `.env` original continua necessário e evite commitar credenciais sensíveis.

@@ -6,30 +6,33 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma:generate": "prisma generate"
   },
+
   "dependencies": {
-    "@hookform/resolvers": "^3.4.2",
-    "@pegasus-ui/react": "^2.3.0",
-    "@prisma/client": "^5.14.0",
-    "@tanstack/react-query": "^5.39.0",
-    "@vercel/analytics": "^1.3.1",
-    "axios": "^1.7.2",
-    "chart.js": "^4.4.3",
-    "next": "14.2.3",
-    "next-seo": "^6.5.0",
-    "react": "^18",
-    "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18",
-    "react-hook-form": "^7.51.5",
-    "zod": "^3.23.8"
+    "@hookform/resolvers": "^3.9.1",
+    "@pegasus-ui/react": "^2.4.0",
+    "@prisma/client": "^5.22.0",
+    "@tanstack/react-query": "^5.67.1",
+    "@vercel/analytics": "^1.5.0",
+    "axios": "^1.7.9",
+    "chart.js": "^4.4.7",
+    "next": "^15.2.4",
+    "next-seo": "^6.6.0",
+    "react": "^19.0.0",
+    "react-chartjs-2": "^5.4.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.54.1",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
-    "typescript": "^5"
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.4",
+    "prisma": "^5.22.0",
+    "typescript": "^5.6.3"
   }
 }
